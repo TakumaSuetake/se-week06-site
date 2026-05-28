@@ -1,7 +1,371 @@
 <!doctype html>
-<meta charset=
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>自己紹介サイト</title>
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --line: #e5e7eb;
+            --accent: #2563eb;
+            --accent-soft: #dbeafe;
+        }
 
-"utf-8">
-<title>自己紹介</title>
-<h1>自己紹介</h1>
-<p>授業で作成したページです。</p>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+        }
+
+        header {
+            padding: 64px 20px 48px;
+            background: linear-gradient(135deg, #ffffff 0%, #eef4ff 100%);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .label {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2rem, 6vw, 3.4rem);
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+        }
+
+        .lead {
+            max-width: 680px;
+            margin: 18px 0 0;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 10px;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            list-style: none;
+            overflow-x: auto;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 999px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 28px 20px 64px;
+        }
+
+        section {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 28px;
+            margin-top: 24px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+        }
+
+        h2 {
+            margin: 0 0 14px;
+            font-size: 1.5rem;
+            border-left: 6px solid var(--accent);
+            padding-left: 12px;
+        }
+
+        p {
+            margin: 0 0 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .item {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 16px;
+            background: #fbfdff;
+        }
+
+        .item h3 {
+            margin: 0 0 8px;
+            font-size: 1.05rem;
+        }
+
+        .item p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .tag {
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            border: 1px solid var(--line);
+            font-size: 0.92rem;
+        }
+
+        .note {
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            color: #7c2d12;
+            margin-top: 16px;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+            padding: 28px 20px;
+            border-top: 1px solid var(--line);
+            background: #ffffff;
+        }
+
+        button {
+            border: 0;
+            border-radius: 999px;
+            padding: 10px 16px;
+            background: var(--accent);
+            color: #ffffff;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .dark {
+            --bg: #111827;
+            --card: #1f2937;
+            --text: #f9fafb;
+            --muted: #d1d5db;
+            --line: #374151;
+            --accent: #60a5fa;
+            --accent-soft: #1e3a5f;
+        }
+
+        .dark header {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        }
+
+        .dark nav {
+            background: rgba(31, 41, 55, 0.92);
+        }
+
+        .dark .item {
+            background: #111827;
+        }
+
+        .dark .tag {
+            background: #111827;
+        }
+
+        .dark footer {
+            background: #1f2937;
+        }
+
+        .dark .note {
+            background: #422006;
+            border-color: #92400e;
+            color: #fed7aa;
+        }
+
+        @media (max-width: 720px) {
+            header {
+                padding: 44px 18px 36px;
+            }
+
+            main {
+                padding: 20px 16px 48px;
+            }
+
+            section {
+                padding: 22px;
+                border-radius: 18px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <span class="label">Software Engineering / Week 06</span>
+            <h1>自己紹介サイト</h1>
+            <p class="lead">
+                GitHub Pages公開演習で作成した，1ファイル構成の静的Webサイトです。
+                GitHub Desktopを使ったcommit，push，公開までの流れを確認するために作成しました。
+            </p>
+            <button id="themeButton" type="button">表示テーマを切り替える</button>
+        </div>
+    </header>
+
+    <nav aria-label="ページ内メニュー">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about">
+            <h2>About</h2>
+            <p>
+                情報技術やソフトウェア開発に関心を持ち，授業や個人制作を通して，
+                Webページ作成，プログラミング，バージョン管理について学んでいます。
+            </p>
+            <p>
+                このページでは，学習内容や制作物を簡単に整理しています。
+                公開ページであるため，住所，電話番号，私的な連絡先などの個人情報は掲載していません。
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <p>
+                現在学習中の内容を，Web制作，開発ツール，設計の3つに分けてまとめます。
+            </p>
+            <div class="grid">
+                <div class="item">
+                    <h3>HTML / CSS</h3>
+                    <p>ページ構造を作り，見やすいレイアウトやスマートフォン対応を行う。</p>
+                </div>
+                <div class="item">
+                    <h3>Git / GitHub</h3>
+                    <p>変更内容をcommitで記録し，pushでGitHubへ反映する。</p>
+                </div>
+                <div class="item">
+                    <h3>設計の基礎</h3>
+                    <p>仕様を読み取り，必要な要素を整理して表現する。</p>
+                </div>
+            </div>
+            <div class="tags" aria-label="学習キーワード">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">GitHub Desktop</span>
+                <span class="tag">GitHub Pages</span>
+            </div>
+        </section>
+
+        <section id="works">
+            <h2>Works</h2>
+            <p>
+                授業で作成した成果物として，GitHub Pagesで公開する自己紹介サイトを作成しました。
+                index.htmlだけで動作するようにし，外部ライブラリや外部画像は使用していません。
+            </p>
+            <div class="grid">
+                <div class="item">
+                    <h3>自己紹介ページ</h3>
+                    <p>About，Skills，Works，Reflectionの4つのセクションで構成したページ。</p>
+                </div>
+                <div class="item">
+                    <h3>レスポンシブ対応</h3>
+                    <p>画面幅に合わせてレイアウトが変わり，スマートフォンでも読みやすい。</p>
+                </div>
+                <div class="item">
+                    <h3>テーマ切り替え</h3>
+                    <p>JavaScriptを使い，明るい表示と暗い表示を切り替えられる。</p>
+                </div>
+            </div>
+            <div class="note">
+                公開前には，個人情報や著作権上問題のある内容が含まれていないか確認します。
+            </div>
+        </section>
+
+        <section id="reflection">
+            <h2>Reflection</h2>
+            <p>
+                今回の演習では，Webページを作るだけでなく，変更をcommitとして記録し，
+                GitHubへpushして公開する流れを体験しました。
+            </p>
+            <p>
+                commitメッセージを書くことで，どの時点で何を変更したのかを後から確認しやすくなることが分かりました。
+                また，GitHub Pagesを使うと，静的なHTMLファイルをWebサイトとして公開できることも確認できました。
+            </p>
+            <p>
+                今後は，README.mdにサイト概要や公開URLを追記し，変更履歴を分かりやすく残していきたいです。
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created for GitHub Pages Exercise. No private contact information is included.</p>
+    </footer>
+
+    <script>
+        const button = document.getElementById("themeButton");
+
+        button.addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+        });
+    </script>
+</body>
+</html>
